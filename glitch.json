@@ -1,5 +1,5 @@
 {
-    "install": "pip3 install -U setuptools pip && pip3 install --user -r requirements.txt",
+    "install": "pip3 install --user -U setuptools pip && pip3 install --no-cache-dir --user -r requirements.txt",
     "start": "PYTHONUNBUFFERED=true streamlit explain.py",
     "watch": {
         "throttle": 1000
