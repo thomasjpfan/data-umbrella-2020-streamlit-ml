@@ -1,0 +1,6 @@
+shap==0.36.0
+anchor-exp==0.0.2.0
+numpy==1.19.2
+streamlit==0.66.0
+pandas==1.1.2
+scikit-learn==0.23.2

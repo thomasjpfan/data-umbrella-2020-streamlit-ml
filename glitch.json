@@ -1,4 +1,4 @@
 {
-    "install": "pip3 install --user -r requirements.txt",
-    "start": "streamlit run explain.py"
+    "install": "pip3 install --user -r requirements-deploy.txt",
+    "start": "python3 -m streamlit.cli run explain.py"
 }
