@@ -1,4 +1,7 @@
 {
-    "install": "pip3 install -r requirements-deploy.txt",
-    "start": "python3 -m streamlit.cli run explain.py"
+    "install": "pip3 install --user -r requirements.txt",
+    "start": "PYTHONUNBUFFERED=true python3 server.py",
+    "watch": {
+        "throttle": 1000
+    }
 }
