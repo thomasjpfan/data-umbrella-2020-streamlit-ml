@@ -1,6 +1,6 @@
 {
     "install": "pip3 install --user -r requirements.txt",
-    "start": "PYTHONUNBUFFERED=true python3 server.py",
+    "start": "PYTHONUNBUFFERED=true streamlit explain.py",
     "watch": {
         "throttle": 1000
     }
