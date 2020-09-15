@@ -69,7 +69,8 @@ proba_df = pd.DataFrame(proba, columns=class_names)
 st.sidebar.write(proba_df)
 
 X_encoded = clf[:-1].transform(user_df)
-X_encoded_df = pd.DataFrame(X_encoded, columns=all_columns)
+encoded_columns = categorical_columns + numerical_columns
+X_encoded_df = pd.DataFrame(X_encoded, columns=encoded_columns)
 explainer = shap.TreeExplainer(clf[-1])
 shap_values = explainer.shap_values(X_encoded[[0], :], check_additivity=False)
 
@@ -106,10 +107,13 @@ st.header("Anchors")
 def get_anchor_explainder():
     penguins = pd.read_csv("penguins.csv")
     X_encoded_all = clf[:-1].transform(penguins[all_columns])
-    anchor_explainer = AnchorTabularExplainer(
-        class_names, all_columns, X_encoded_all,
-        categorical_names={0: metadata['island_labels'],
-                           1: metadata['gender_labels']})
+    anchor_explainer = AnchorTabularExplainer(class_names,
+                                              encoded_columns,
+                                              X_encoded_all,
+                                              categorical_names={
+                                                  0: metadata['island_labels'],
+                                                  1: metadata['gender_labels']
+                                              })
     return anchor_explainer
 
 
