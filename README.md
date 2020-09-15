@@ -4,7 +4,7 @@ Simple dashboard using SHAP values and Anchors for explanations for predictions:
 
 ![Demo](demo.gif)
 
-# Usage
+## Usage
 
 0. Install [anaconda](https://www.anaconda.com/products/individual).
 1. Create a virtual environment:
@@ -34,4 +34,4 @@ streamlit run explain.py --server.runOnSave True
 
 ## License
 
-Under [MIT License](LICENSE).
+This repo is under the [MIT License](LICENSE).
