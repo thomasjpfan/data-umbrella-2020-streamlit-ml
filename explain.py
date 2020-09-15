@@ -12,12 +12,21 @@ numerical_columns = ['culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm',
 
 
 @st.cache
+def get_penguins():
+    return pd.read_csv("penguins.csv",
+                       dtype={
+                           "species": 'category',
+                           "island": 'category',
+                           "gender": 'category'
+                       })
+
+
+penguins = get_penguins()
+
+
+@st.cache
 def get_metadata():
     metadata = {}
-    penguins = pd.read_csv("penguins.csv",
-                           dtype={"species": 'category',
-                                  "island": 'category',
-                                  "gender": 'category'})
 
     for cat_col in categorical_columns:
         metadata[f'{cat_col}_labels'] = np.unique(penguins[cat_col]).tolist()
@@ -45,7 +54,7 @@ for col in categorical_columns:
 
 step_map = {
     'culmen_length_mm': 5.0,
-    'culmen_depth_mm': 5.0,
+    'culmen_depth_mm': 2.0,
     'flipper_length_mm': 10.0,
     'body_mass_g': 200.0
 }
@@ -112,7 +121,6 @@ st.header("Anchors")
 
 @st.cache
 def get_anchor_explainder():
-    penguins = pd.read_csv("penguins.csv")
     X_encoded_all = clf[:-1].transform(penguins[all_columns])
     anchor_explainer = AnchorTabularExplainer(class_names,
                                               encoded_columns,
