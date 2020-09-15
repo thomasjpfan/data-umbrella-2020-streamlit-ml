@@ -137,4 +137,4 @@ exp = anchor_explainer.explain_instance(X_encoded[0, :],
                                         clf[-1].predict, threshold=0.95)
 
 exp_html = exp.as_html()
-componenets.html(exp_html, height=1000)
+componenets.html(exp_html, height=700)
