@@ -44,10 +44,10 @@ for col in categorical_columns:
 
 
 step_map = {
-   'culmen_length_mm': 0.5,
-   'culmen_depth_mm': 0.5,
-   'flipper_length_mm': 5.0,
-   'body_mass_g': 100.0
+    'culmen_length_mm': 5,
+    'culmen_depth_mm': 5,
+    'flipper_length_mm': 10.0,
+    'body_mass_g': 200.0
 }
 for col in numerical_columns:
     user_input[col] = [st.sidebar.number_input(f"Select {col}",
@@ -89,16 +89,23 @@ def bundle_js():
 shape_js = bundle_js()
 
 values1 = shap.force_plot(explainer.expected_value[0],
-                          shap_values[0][0,:],
-                          X_encoded_df.iloc[0,:], out_names=class_names[0])
+                          shap_values[0],
+                          X_encoded_df,
+                          out_names=class_names[0])
 values2 = shap.force_plot(explainer.expected_value[1],
-                          shap_values[1][0,:],
-                          X_encoded_df.iloc[0,:], out_names=class_names[1])
+                          shap_values[1],
+                          X_encoded_df,
+                          out_names=class_names[1])
 values3 = shap.force_plot(explainer.expected_value[2],
-                          shap_values[2][0,:],
-                          X_encoded_df.iloc[0,:], out_names=class_names[2])
-componenets.html(f"{shape_js}{values1._repr_html_()}{values2._repr_html_()}"
-                 f"{values3._repr_html_()}", height=420)
+                          shap_values[2],
+                          X_encoded_df,
+                          out_names=class_names[2])
+componenets.html(
+    f"{shape_js}"
+    f"{values1._repr_html_()}"
+    f"{values2._repr_html_()}"
+    f"{values3._repr_html_()}",
+    height=420)
 
 st.header("Anchors")
 
