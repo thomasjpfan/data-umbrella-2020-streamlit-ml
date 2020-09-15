@@ -44,8 +44,8 @@ for col in categorical_columns:
 
 
 step_map = {
-    'culmen_length_mm': 5,
-    'culmen_depth_mm': 5,
+    'culmen_length_mm': 5.0,
+    'culmen_depth_mm': 5.0,
     'flipper_length_mm': 10.0,
     'body_mass_g': 200.0
 }
