@@ -32,7 +32,6 @@ streamlit run intro.py --server.runOnSave True
 streamlit run explain.py --server.runOnSave True
 ```
 
-# License
+## License
 
-MIT
-
+Under [MIT License](LICENSE).
