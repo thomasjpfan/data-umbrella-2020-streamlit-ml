@@ -10,13 +10,13 @@ Simple dashboard using SHAP values and Anchors for explanations for predictions:
 1. Create a virtual environment:
 
 ```bash
-conda create -n data-umbrealla-streamlit python=3.8
+conda create -n data-umbrella-streamlit python=3.8
 ```
 
 2. Install requirements:
 
 ```bash
-conda activate data-umbrealla-streamlit
+conda activate data-umbrella-streamlit
 pip install -r requirements-all.txt
 ```
 
