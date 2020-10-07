@@ -17,7 +17,7 @@ species_to_wiki = {
 }
 
 st.markdown(f"### Learn more about {species} penguins at "
-            "[wikipedia]({species_to_wiki[species]})!")
+            f"[wikipedia]({species_to_wiki[species]})!")
 
 st.title("EDA for penguins dataset!")
 
