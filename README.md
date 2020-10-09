@@ -7,26 +7,32 @@ Simple dashboard using SHAP values and Anchors for explanations for predictions:
 ## Usage
 
 0. Install [anaconda](https://www.anaconda.com/products/individual).
+
 1. Create a virtual environment:
 
 ```bash
 conda create -n data-umbrella-streamlit python=3.8
 ```
+2. Clone this repository
 
-2. Install requirements:
+```bash
+git clone https://github.com/thomasjpfan/data-umbrella-2020-streamlit-ml.git 
+```
+
+3. Install requirements:
 
 ```bash
 conda activate data-umbrella-streamlit
 pip install -r requirements-all.txt
 ```
 
-3. Run the intro:
+4. Run the intro:
 
 ```bash
 streamlit run intro.py --server.runOnSave True
 ```
 
-4. Run the explanation:
+5. Run the explanation:
 
 ```py
 streamlit run explain.py --server.runOnSave True
