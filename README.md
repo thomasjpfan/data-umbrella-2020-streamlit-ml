@@ -12,17 +12,18 @@ Simple dashboard using SHAP values and Anchors for explanations for predictions:
 
 ```bash
 conda create -n data-umbrella-streamlit python=3.8
+conda activate data-umbrella-streamlit
 ```
 2. Clone this repository
 
 ```bash
-git clone https://github.com/thomasjpfan/data-umbrella-2020-streamlit-ml.git 
+git clone https://github.com/thomasjpfan/data-umbrella-2020-streamlit-ml.git
+cd data-umbrella-2020-streamlit-ml
 ```
 
 3. Install requirements:
 
 ```bash
-conda activate data-umbrella-streamlit
 pip install -r requirements-all.txt
 ```
 
