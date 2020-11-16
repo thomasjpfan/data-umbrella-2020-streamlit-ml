@@ -1,5 +1,7 @@
 # Streamlit Talk for Data Umbrella 2020
 
+[Link to slides](https://thomasjpfan.github.io/data-umbrella-2020-streamlit-slides/#1)
+
 Simple dashboard using SHAP values and Anchors for explanations for predictions:
 
 ![Demo](demo.gif)
