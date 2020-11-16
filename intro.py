@@ -8,7 +8,7 @@ st.title("Show me some penguins!")
 
 species = st.radio("Select a penguin", ["adelie", "gentoo", "chinstrap"])
 
-st.image(f"{species}.jpg", use_column_width=True)
+st.image(f"{species}.jpg")
 
 species_to_wiki = {
     'adelie': 'https://en.wikipedia.org/wiki/Adélie_penguin',
