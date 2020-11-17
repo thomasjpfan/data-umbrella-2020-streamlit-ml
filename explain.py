@@ -12,12 +12,7 @@ numerical_columns = [
     'culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g'
 ]
 
-penguins = pd.read_csv("penguins.csv",
-                       dtype={
-                           "species": 'category',
-                           "island": 'category',
-                           "gender": 'category'
-                       })
+penguins = pd.read_csv("penguins.csv")
 
 metadata = {}
 
@@ -66,63 +61,45 @@ proba_df = pd.DataFrame(proba, columns=class_names)
 st.sidebar.write(proba_df)
 
 X_encoded = clf[:-1].transform(user_df)
-encoded_columns = categorical_columns + numerical_columns
-X_encoded_df = pd.DataFrame(X_encoded, columns=encoded_columns)
 explainer = shap.TreeExplainer(clf[-1])
 shap_values = explainer.shap_values(X_encoded[[0], :], check_additivity=False)
 
 st.write(f"## Explanation for Predicting: **{class_prediction}**")
 st.subheader("SHAP values")
 
+bundle_path = Path(shap.__file__).parent / 'plots' / 'resources' / "bundle.js"
+with bundle_path.open('r') as f:
+    bundle_data = f.read()
+    shape_js = f"<script charset='utf-8'>{bundle_data}</script>"
 
-@st.cache
-def bundle_js():
-    bundle_path = Path(
-        shap.__file__).parent / 'plots' / 'resources' / "bundle.js"
-    with bundle_path.open('r') as f:
-        bundle_data = f.read()
-        bundle_js = f"<script charset='utf-8'>{bundle_data}</script>"
-    return bundle_js
+feature_names = categorical_columns + numerical_columns
 
+shap_plots = []
 
-shape_js = bundle_js()
+for i in range(3):
+    shap_plot = shap.force_plot(explainer.expected_value[i],
+                                shap_values[i],
+                                X_encoded,
+                                feature_names=feature_names,
+                                out_names=class_names[i])
+    shap_plots.append(shap_plot)
 
-values1 = shap.force_plot(explainer.expected_value[0],
-                          shap_values[0],
-                          X_encoded_df,
-                          out_names=class_names[0])
-values2 = shap.force_plot(explainer.expected_value[1],
-                          shap_values[1],
-                          X_encoded_df,
-                          out_names=class_names[1])
-values3 = shap.force_plot(explainer.expected_value[2],
-                          shap_values[2],
-                          X_encoded_df,
-                          out_names=class_names[2])
-componenets.html(
-    f"{shape_js}"
-    f"{values1._repr_html_()}"
-    f"{values2._repr_html_()}"
-    f"{values3._repr_html_()}",
-    height=420)
+shap_html_reprs = [f"{shap_plot._repr_html_()}" for shap_plot in shap_plots]
+shap_html_repr = "".join(shap_html_reprs)
+
+componenets.html(f"{shape_js}{shap_html_repr}", height=420)
 
 st.header("Anchors")
 
+X_encoded_all = clf[:-1].transform(penguins[all_columns])
+anchor_explainer = AnchorTabularExplainer(class_names,
+                                          feature_names,
+                                          X_encoded_all,
+                                          categorical_names={
+                                              0: metadata['island_labels'],
+                                              1: metadata['gender_labels']
+                                          })
 
-@st.cache
-def get_anchor_explainder():
-    X_encoded_all = clf[:-1].transform(penguins[all_columns])
-    anchor_explainer = AnchorTabularExplainer(class_names,
-                                              encoded_columns,
-                                              X_encoded_all,
-                                              categorical_names={
-                                                  0: metadata['island_labels'],
-                                                  1: metadata['gender_labels']
-                                              })
-    return anchor_explainer
-
-
-anchor_explainer = get_anchor_explainder()
 exp = anchor_explainer.explain_instance(X_encoded[0, :],
                                         clf[-1].predict,
                                         threshold=0.95)
