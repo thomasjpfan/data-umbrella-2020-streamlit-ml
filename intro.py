@@ -51,7 +51,7 @@ scat = px.scatter(penguins,
                   color='species')
 scat
 
-st.header("How is the body mass for each species?")
+st.header("How is the body mass for each species distributed?")
 
 box = px.box(penguins, x="species", y="body_mass_g", color="gender")
 box
