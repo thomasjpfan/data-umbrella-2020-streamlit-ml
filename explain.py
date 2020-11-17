@@ -24,7 +24,7 @@ for num_col in numerical_columns:
     metadata[f"{num_col}_max"] = penguins[num_col].max()
 
 metadata['class_labels'] = np.unique(penguins['species']).tolist()
-metadata['all_columns'] = penguins.columns.drop('species').tolist()
+metadata['input_columns'] = penguins.columns.drop('species').tolist()
 
 user_input = {}
 
@@ -49,9 +49,9 @@ for col in numerical_columns:
 
 clf = joblib.load("penguin_clf.joblib")
 class_names = metadata['class_labels']
-all_columns = metadata['all_columns']
+input_columns = metadata['input_columns']
 
-user_df = pd.DataFrame(user_input, columns=all_columns)
+user_df = pd.DataFrame(user_input, columns=input_columns)
 prediction = clf.predict(user_df)[0]
 class_prediction = class_names[prediction]
 
