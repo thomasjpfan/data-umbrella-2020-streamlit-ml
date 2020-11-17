@@ -1,7 +1,7 @@
 # Streamlit Talk for Data Umbrella 2020
 
-[Link to slides](https://thomasjpfan.github.io/data-umbrella-2020-streamlit-slides/#1)
-[Hosted version of explain.py](https://share.streamlit.io/thomasjpfan/data-umbrella-2020-streamlit-ml/explain.py)
+- [Link to slides](https://thomasjpfan.github.io/data-umbrella-2020-streamlit-slides/#1)
+- [Hosted version of explain.py](https://share.streamlit.io/thomasjpfan/data-umbrella-2020-streamlit-ml/explain.py)
 
 Simple dashboard using SHAP values and Anchors for explanations for predictions:
 
